@@ -1,4 +1,4 @@
--# From http://code.activestate.com/recipes/134892/
+# From http://code.activestate.com/recipes/134892/
 # "getch()-like unbuffered character reading from stdin
 #  on both Windows and Unix (Python recipe)"
 

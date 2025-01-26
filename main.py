@@ -83,28 +83,29 @@ def parse_ascii_file_to_array(input_file):
             result.append(values)
     return result
 
-def convert_ascii_to_bf(input_file):
+def convert_ascii_to_bf(input_file, output_file):
     array = parse_ascii_file_to_array(input_file)
     bf_string = ""
     for line in array:
         char_count = len(line)
         for value in line:
             code = ascii_to_bf_optimised(value)
-            bf_string = bf_string + code + ">"
-        bf_string = bf_string + "." + "<[-]" * char_count + "<"
-    return bf_string
+            bf_string = bf_string + code + "." + "[-]<"
+        bf_string = bf_string + "++++++++[>++++<-]>.<"
+    with open(output_file, 'w', encoding='utf-8') as f_out:
+        f_out.write(bf_string)
 
 
-# -----------------------
-# Example usage / testing:
 if __name__ == "__main__":
-    text = convert_ascii_to_bf("ascii_codes.txt")
-    print(text)
+    scrape_text_to_file("https://www.ewor.com/?sc=EW&ssc=Pre-Idea-Top&sm=Direct", "text_handling/output.txt")
+    text_to_ascii("text_handling/output.txt", "text_handling/ascii_codes.txt")
+    convert_ascii_to_bf("text_handling/ascii_codes.txt", "brainf--k_code.bf")
 
 
 
 
-# text_to_ascii("output.txt", "ascii_codes.txt")
 
 
-# scrape_text_to_file("https://www.ewor.com/?sc=EW&ssc=Pre-Idea-Top&sm=Direct", "output.txt")
+
+
+
